@@ -1,0 +1,414 @@
+@keyframes neon-glow {
+    0%, 100% { 
+        box-shadow: 0 0 5px var(--accent-color);
+    }
+    50% { 
+        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-secondary);
+    }
+}
+
+@keyframes border-run {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes dj-pulse-wave {
+    0% { 
+        box-shadow: 0 0 8px var(--accent-color), 0 0 15px var(--accent-color);
+        transform: scale(1);
+    }
+    25% { 
+        box-shadow: 0 0 15px var(--accent-secondary), 0 0 30px var(--accent-secondary), 0 0 50px var(--accent-secondary);
+        transform: scale(1.005) rotate(0.1deg); 
+    }
+    50% { 
+        box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+        transform: scale(1);
+    }
+    75% { 
+        box-shadow: 0 0 12px var(--accent-secondary), 0 0 25px var(--accent-secondary), 0 0 45px var(--accent-secondary);
+        transform: scale(1.005) rotate(-0.1deg);
+    }
+    100% { 
+        box-shadow: 0 0 8px var(--accent-color), 0 0 15px var(--accent-color);
+        transform: scale(1);
+    }
+}
+
+
+#video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    overflow: hidden;
+    filter: brightness(60%) saturate(120%);
+    transform: scale(1.05);
+}
+
+:root {
+    --main-bg-color: #000000; 
+    --card-bg-color: rgba(10, 20, 40, 0.0);
+    --border-color: rgba(255, 255, 255, 0.15); 
+    --text-color: #f0f0f0; 
+    --accent-color: #00eaff;
+    --accent-secondary: #a000ff;
+    --shadow-color: rgba(0, 0, 0, 0.0);
+    --icon-glow-color: #00eaff; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    
+    background: #000000;
+    overflow: auto; 
+    position: relative;
+    /* PENTING: Untuk memastikan body tidak 'flex' secara vertikal agar tombol di atas bisa muncul */
+    flex-direction: column;
+}
+
+.background-wrapper {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    /* PENTING: agar wrapper berada di tengah dan di bawah tombol suara */
+    margin: auto; 
+}
+
+.card-container {
+    background: transparent;
+    padding: 30px;
+    border-radius: 20px;
+    
+    border: 1px solid var(--border-color); 
+    
+    width: 400px; 
+    text-align: center;
+    margin: auto; 
+    position: relative;
+    overflow: hidden; 
+    
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    
+    animation: dj-pulse-wave 4s infinite ease-in-out; 
+    transition: none; 
+}
+
+.card-container:hover::after {
+    content: none; 
+}
+
+
+.profile-section {
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--accent-color); 
+    box-shadow: 0 0 5px rgba(0, 234, 255, 0.5); 
+    transition: all 0.4s;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05); 
+    border: 3px solid var(--accent-secondary); 
+    box-shadow: 0 0 15px var(--accent-secondary);
+    animation: none; 
+}
+
+.username {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 8px 0 0 0;
+    color: white;
+    text-shadow: 
+        0 0 5px var(--accent-color),
+        1px 1px 0 #000,
+        2px 2px 0 #000;
+}
+
+.tagline {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #999;
+    margin: 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.social-links a img {
+    width: 45px; 
+    height: 45px;
+    border-radius: 50%; 
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.5s ease-out; 
+
+    filter: grayscale(100%) brightness(80%); 
+    opacity: 0.8;
+}
+
+.social-links a:hover img {
+    transform: scale(1.3);
+    filter: grayscale(0%) brightness(100%);
+    opacity: 1; 
+
+    box-shadow: 0 0 10px var(--icon-glow-color), 0 0 20px var(--icon-glow-color), 0 0 30px var(--accent-secondary);
+    animation: neon-glow 1.5s infinite alternate;
+}
+
+.main-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-item {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: rgba(10, 20, 40, 0.75); 
+    border-radius: 10px; 
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 18px 25px; 
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    
+    transition: all 0.3s ease-out;
+    position: relative; 
+    overflow: hidden;
+}
+
+.link-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to right, var(--accent-secondary), var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+}
+
+.link-item:hover {
+    color: white; 
+    transform: translateY(-3px); 
+    box-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--accent-secondary);
+}
+
+.link-item:hover::before {
+    opacity: 1;
+    background-size: 200% 200%; 
+    animation: border-run 2s linear infinite;
+}
+
+.link-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-icon {
+    width: 35px; 
+    height: 35px;
+    flex-shrink: 0; 
+    position: absolute; 
+    left: 20px; 
+    z-index: 10;
+    margin: 0;
+    box-shadow: 0 0 5px rgba(0, 234, 255, 0.5); 
+    transition: all 0.3s; 
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.link-item:hover .link-icon {
+    transition: none;
+    animation: dj-pulse-wave 2s infinite ease-in-out; 
+    transform: scale(1.05);
+}
+
+.link-text {
+    text-align: center;
+    font-weight: 600;
+    flex-grow: 1; 
+    padding-left: 30px; 
+    transition: color 0.3s;
+}
+
+.link-item:hover .link-text {
+    color: white; 
+    text-shadow: none;
+}
+
+
+/* --- DESKTOP STYLES (DEFAULT) --- */
+/* Tombol suara bulat dan fixed di PC */
+.sound-toggle {
+    position: fixed;
+    z-index: 1000;
+    top: auto;
+    bottom: 30px;
+    left: 30px;
+    transform: none;
+    
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
+    
+    background: rgba(10, 20, 40, 0.9);
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease-in-out;
+    
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.5em;
+    opacity: 0.8;
+}
+
+.sound-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+.sound-toggle::before {
+    content: none !important;
+}
+
+.sound-toggle .link-text {
+    padding-left: 0;
+    line-height: 1;
+}
+
+.sound-toggle.active {
+    border: 2px solid var(--accent-secondary);
+    box-shadow: 0 0 15px var(--accent-secondary), 0 0 30px var(--accent-secondary);
+    animation: dj-pulse-wave 2s infinite ease-in-out;
+    opacity: 1;
+}
+
+/* Penyesuaian Link Default (PC/Desktop) */
+.link-icon {
+    left: 20px;
+}
+.link-text {
+    padding-left: 30px;
+    font-size: 1em;
+}
+
+
+/* --- MOBILE SPECIFIC STYLES (max-width: 600px) --- */
+@media (max-width: 600px) {
+    
+    /* Tombol suara di HP diubah menjadi kotak, posisi relative, dan di atas halaman */
+    .sound-toggle {
+        position: relative; /* Menjadi bagian dari flow halaman */
+        margin: 10px auto 20px auto; /* Margin di atas dan di bawah */
+        
+        /* Mengganti bentuk: dari bulat (PC) menjadi persegi panjang (HP) */
+        width: 90%; /* Lebar hampir penuh */
+        max-width: 400px;
+        height: auto;
+        border-radius: 10px;
+        
+        /* Menghilangkan efek posisi fixed/transform */
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        
+        /* Mengembalikan gaya padding dan link item */
+        padding: 15px 25px;
+        font-size: 1em;
+        opacity: 1; /* Selalu terlihat jelas */
+    }
+    
+    .sound-toggle .link-text {
+        padding-left: 0;
+        line-height: normal;
+        font-size: 1em;
+    }
+
+    .card-container {
+        width: 90%;
+        margin: 0 auto; /* Margin atas/bawah sudah ditangani oleh body/wrapper */
+        padding: 20px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    body {
+        min-height: auto;
+        padding: 0;
+        /* body tidak lagi dipaksa center-align secara vertikal (align-items: center)
+           agar tombol suara bisa muncul di paling atas saat scroll */
+        align-items: center; 
+        justify-content: flex-start; /* Memastikan konten mulai dari atas */
+    }
+    
+    .background-wrapper {
+        padding: 0 0 20px 0;
+    }
+    
+    #video-background {
+        filter: brightness(50%) saturate(120%);
+    }
+    
+    .social-links {
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .social-links a img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Mengubah ukuran dan posisi ikon link utama di HP */
+    .link-item {
+        padding: 15px 15px;
+    }
+
+    .link-icon {
+        left: 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .link-text {
+        padding-left: 10px;
+        font-size: 0.9em;
+    }
+}
