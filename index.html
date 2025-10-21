@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoe Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="Icon" href="media/zoe.png" type="image/png">
+</head>
+<body>
+    
+    <video autoplay loop id="video-background">
+        <source src="ssstik.io_@rizqynande_1760689048428.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+    
+    <button id="unmute-button" class="link-item sound-toggle">
+        <span class="link-text">🔇</span>
+    </button>
+    
+    <div class="background-wrapper">
+        <div class="card-container">
+            
+            <div class="profile-section">
+                <img src="media/PP Bot.png" alt="Foto Profil ~zoe" class="profile-pic">
+                <h1 class="username">~Zoe</h1>
+                <p class="tagline">Support Me!</p>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://discord.gg/bn2Nd3UXtW" target="_blank"><img src="media/Discord.png" alt="Discord Icon"></a>
+                <a href="https://www.tiktok.com/@zoe_11420" target="_blank"><img src="media/tiktok.png" alt="TikTok Icon"></a>
+                <a href="https://www.youtube.com/@%E3%83%84%E3%82%BE%E3%83%BC" target="_blank"><img src="media/youtube.png" alt="YouTube Icon"></a>
+                <a href="https://x.com/zoe_11040" target="_blank"><img src="media/x.png" alt="X Icon"></a>
+                <a href="https://www.instagram.com/tsuzo11/" target="_blank"><img src="media/instagram.png" alt="Instagram Icon"></a>
+            </div>
+            
+            <div class="main-links">
+                <a href="https://discord.gg/bn2Nd3UXtW" target="_blank" class="link-item">
+                    <div class="link-content">
+                        <img src="media/PP Bot.png" alt="Discord Logo" class="link-icon">
+                        <span class="link-text">Join My Discord Server</span>
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@zoe_11420" target="_blank" class="link-item">
+                    <div class="link-content">
+                        <img src="media/tiktok.png" alt="Tiktok Logo" class="link-icon">
+                        <span class="link-text">Tiktok</span>
+                    </div>
+                </a>
+                <a href="https://x.com/zoe_11040" target="_blank" class="link-item">
+                    <div class="link-content">
+                        <img src="media/x.png" alt="X (Twitter) Logo" class="link-icon">
+                        <span class="link-text">X (Twitter)</span>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/tsuzo11/" target="_blank" class="link-item">
+                    <div class="link-content">
+                        <img src="media/instagram.png" alt="Instagram Logo" class="link-icon">
+                        <span class="link-text">Instagram</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/@%E3%83%84%E3%82%BE%E3%83%BC" target="_blank" class="link-item">
+                    <div class="link-content">
+                        <img src="media/youtube.png" alt="Youtube Logo" class="link-icon">
+                        <span class="link-text">YouTube</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('video-background');
+            const unmuteButton = document.getElementById('unmute-button');
+
+            if (video && unmuteButton) {
+                video.muted = true;
+                unmuteButton.querySelector('.link-text').textContent = '🔇';
+
+                unmuteButton.addEventListener('click', () => {
+                    if (video.muted) {
+                        video.muted = false;
+                        unmuteButton.querySelector('.link-text').textContent = '🔊';
+                        unmuteButton.classList.add('active');
+                    } else {
+                        video.muted = true;
+                        unmuteButton.querySelector('.link-text').textContent = '🔇';
+                        unmuteButton.classList.remove('active');
+                    }
+                    video.play().catch(error => {
+                        console.log("Error playing video:", error);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
